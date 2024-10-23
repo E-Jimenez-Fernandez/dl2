@@ -22,7 +22,7 @@
 weightFactors <- function(x, Compind, degrees, nfold = 5, trace = .5) {
   m <- ncol(x)
   dat_os <- x
-  x <- x %>% mutate(Cind = as.numeric(Compind))
+  x <- dplyr::mutate(x, Cind = as.numeric(Compind))
   mymodel <- earth(Cind ~ ., data = x, degree = degrees, nfold = nfold, trace = trace)
   p2 <- evimp(mymodel, trim = FALSE)
   Variable <- row.names(p2)
