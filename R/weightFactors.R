@@ -9,6 +9,8 @@
 #' @param trace Controls the verbosity of the fitting process.
 #' @return A list containing the computed weights, variable names, and importance measures.
 #'
+#' @importFrom dplyr mutate
+#'
 #' @examples
 #' \dontrun{
 #'   data <- data.frame(var1 = rnorm(10), var2 = rnorm(10))
