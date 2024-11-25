@@ -1,0 +1,18 @@
+Package: dl2
+Title: Composite Indicators by Metrics
+Version: 0.1.0
+Authors@R: 
+    person("Eduardo", "Jimenez-Fernandez", , "edjimfer@ugr.es", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6108-527X"))
+Description: The package implements composite indicators using variable importance and distance measures.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    dplyr,
+    earth,
+    corrgram
+URL: https://github.com/E-Jimenez-Fernandez/dl2
+BugReports: https://github.com/E-Jimenez-Fernandez/dl2/issues
+References: Jiménez-Fernández, E., Sánchez, A., & Ortega-Pérez, M. (2022). Dealing with weighting scheme in composite indicators: An unsupervised distance-machine learning proposal for quantitative data. Socio-Economic Planning Sciences, 83, 101339. https://doi.org/10.1016/j.seps.2022.101339

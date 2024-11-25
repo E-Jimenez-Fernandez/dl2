@@ -1,0 +1,82 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# dl2
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+ This package  introduces a method for creating composite indicators by leveraging the vector space defined by the observations and incorporating a metric that reflects the proximity between units. This quantitative approach enhances the comparability of units under study. The proposed methodology mitigates the issue of linear dependence in the model and seeks to identify functional relationships that optimize model construction. Furthermore, this approach reduces researcher bias by assigning weights through unsupervised machine learning techniques. Monte Carlo simulations demonstrate the robustness of this methodology. 
+
+## Installation
+
+You can install the development version of dl2 like so:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("E-Jimenez-Fernandez/dl2")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(dl2)
+## Basic example code
+set.seed(123)
+data <- data.frame(matrix(rnorm(500), ncol = 10))
+result <- dl2(data, polarity = c(1,2), err = 0.001, iterations = 50, degrees = 2,use_normat = TRUE)
+
+# The normalized data matrix after adjusting for variable polarity. Each variable # is scaled between 0 and 1 depending on its polarity (positive or negative).
+
+print(result$normat)
+
+# A vector of weights for each variable, calculated using the MARS model. These # # weights are used to combine the variables into a composite indicator.
+
+print(result$Weights)
+
+# A numeric vector that tracks the error values for each iteration of the #algorithm. The error is calculated as the difference between the composite indicator at each step and the target value.
+
+print(result$derror)
+
+# The initial Frechet index or composite indicator assuming all weights equal to one, which is a distance-based measure used to assess the proximity between the variables before any weights are applied.
+
+print(result$frechet)
+
+# A correlation plot (produced by the `corrgram` package) that visualizes the relationships between the normalized variables.
+
+print(result$corrgr)
+
+# The final composite indicator after the iterative process. This is the weighted sum of the variables, which reflects the importance of each based on the calculated weights.
+
+print(result$Comp.Indicator)
+
+# The composite indicator from the previous iteration, used to compare and update the indicator in subsequent iterations.
+
+print(result$Comp.Indicator_1)
+
+# The number of iterations the algorithm has performed before stopping, either due to reaching the error threshold or hitting the maximum number of iterations.
+
+print(result$iteration)
+
+# The initial distance matrix, which contains the squared differences between the variables, raised to the specified power (`degrees`).
+
+print(result$dist.in)
+
+# The final distance matrix after applying the calculated weights to the variables. This represents the final distance-based composite indicator.
+
+print(result$dist.fin)
+```
